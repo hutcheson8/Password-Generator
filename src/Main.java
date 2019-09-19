@@ -1,6 +1,4 @@
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -124,22 +122,14 @@ public class Main {
 		generator.add(passwordArea);
 		{
 			JButton generateButton = new JButton("Generate");
-			generateButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					passwordArea.setText(newPassword());
-				}
-			});
+			generateButton.addActionListener((e) -> passwordArea.setText(newPassword()));
 			generator.add(generateButton);
 		}
 		{
 			JButton optionsButton = new JButton("Options");
-			optionsButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					options.setLocationRelativeTo(null);
-					options.setVisible(true);
-				}
+			optionsButton.addActionListener((e) -> {
+				options.setLocationRelativeTo(null);
+				options.setVisible(true);
 			});
 			generator.add(optionsButton);
 		}
@@ -165,27 +155,16 @@ public class Main {
 		updateCharacterList();
 		JButton[] b = new JButton[3];
 		b[0] = new JButton("OK");
-		b[0].addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				updateCharacterList();
-				options.setVisible(false);
-			}
+		b[0].addActionListener((e) -> {
+			updateCharacterList();
+			options.setVisible(false);
 		});
 		b[1] = new JButton("Default");
-		b[1].addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				revertDefault();
-			}
-		});
+		b[1].addActionListener((e) -> revertDefault());
 		b[2] = new JButton("Cancel");
-		b[2].addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				revertChanges();
-				options.setVisible(false);
-			}
+		b[2].addActionListener((e) -> {
+			revertChanges();
+			options.setVisible(false);
 		});
 		for (int x = 0; x < 3; x++) {
 			options.add(forceCheckbox[x]);
